@@ -3,10 +3,37 @@ import useAuth from "../../hooks/useAuth";
 
 const AddJob = () => {
   const { user } = useAuth();
+  const handleAddJob = (e) => {
+    e.preventDefault();
+    const fromData = new FormData(e.target);
+    const initialData = Object.fromEntries(fromData.entries());
+    console.log(initialData);
+    const { min, max, currency, ...newJob } = initialData;
+    newJob.salaryRange = { min, max, currency };
+    newJob.requirements = newJob.requirements.split("\n");
+    newJob.responsibilities = newJob.responsibilities.split("\n");
+    console.log(newJob);
+
+    fetch("http://localhost:3000/jobs", {
+      method: "POST",
+      headers: {
+        "content-type": "application/json",
+      },
+      body: JSON.stringify(newJob),
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        console.log(data);
+        if (data.acknowledged) {
+          alert("Job Posted Successfully");
+          e.target.reset();
+        }
+      });
+  };
   return (
     <div className="text-gray-800 max-w-4xl mx-auto p-6 bg-white rounded-2xl shadow-lg mb-2 mt-2">
       <h2 className="text-3xl font-bold mb-6">Post a Job</h2>
-      <form className="space-y-6">
+      <form onSubmit={handleAddJob} className="space-y-6">
         {/* Job title */}
         <div>
           <label className="block text-sm font-medium mb-1">Job Title</label>
@@ -28,33 +55,35 @@ const AddJob = () => {
           />
         </div>
         <div className="flex gap-2 justify-between w-full">
-             {/* Job Type */}
-        <div className="w-1/2">
-          <label className="block text-sm font-medium mb-1">Job Type</label>
-          <select className="w-full border border-gray-300 rounded-lg px-4 py-2 bg-white focus:outline-none focus:ring-2 focus:ring-blue-500">
-            <option>Pick A Job Type</option>
-            <option>Full-time</option>
-            <option>Intern</option>
-            <option>Part-time</option>
-          </select>
-        </div>
-        {/* Job Field */}
-        <div className="w-1/2">
-          <label className="block text-sm font-medium mb-1">Job Field</label>
-          <select
-            name="field"
-            className="w-full border border-gray-300 rounded-lg px-4 py-2 bg-white focus:outline-none focus:ring-2 focus:ring-blue-500"
-          >
-            <option>Pick A Job Field</option>
-            <option>Engineering</option>
-            <option>Marketing</option>
-            <option>IT</option>
-            <option>Teaching</option>
-          </select>
+          {/* Job Type */}
+          <div className="w-1/2">
+            <label className="block text-sm font-medium mb-1">Job Type</label>
+            <select
+              name="job_type"
+              className="w-full border border-gray-300 rounded-lg px-4 py-2 bg-white focus:outline-none focus:ring-2 focus:ring-blue-500"
+            >
+              <option>Pick A Job Type</option>
+              <option>Full-time</option>
+              <option>Intern</option>
+              <option>Part-time</option>
+            </select>
+          </div>
+          {/* Job Field */}
+          <div className="w-1/2">
+            <label className="block text-sm font-medium mb-1">Job Field</label>
+            <select
+              name="field"
+              className="w-full border border-gray-300 rounded-lg px-4 py-2 bg-white focus:outline-none focus:ring-2 focus:ring-blue-500"
+            >
+              <option>Pick A Job Field</option>
+              <option>Engineering</option>
+              <option>Marketing</option>
+              <option>IT</option>
+              <option>Teaching</option>
+            </select>
+          </div>
         </div>
 
-        </div>
-       
         {/* Salary Range */}
         <div>
           <label className="block text-sm font-medium mb-2">Salary Range</label>
@@ -176,7 +205,7 @@ const AddJob = () => {
         <div className="pt-4 text-center">
           <button
             type="submit"
-            className="bg-blue-600 text-white w-3xl px-6 py-3 rounded-lg hover:bg-blue-700 transition duration-200"
+            className="bg-blue-600 text-white w-3xl px-6 py-3 rounded-lg hover:bg-blue-700 transition duration-200 cursor-pointer"
           >
             Submit Job
           </button>
