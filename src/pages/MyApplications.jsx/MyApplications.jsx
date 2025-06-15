@@ -10,7 +10,7 @@ const MyApplications = () => {
       .then((data) => setJobs(data));
   }, [user?.email]);
   return (
-    <div className="overflow-x-auto bg-black h-screen">
+    <div className="overflow-x-auto bg-black w-5xl border rounded-3xl m-5 mx-auto">
       <h1 className="text-center text-2xl p-5">My Applied Job</h1>
       <div className="overflow-x-auto">
         <table className="table">
@@ -24,6 +24,7 @@ const MyApplications = () => {
               </th>
               <th>Name</th>
               <th>Job</th>
+              <th>Deadline</th>
               <th>Status</th>
               <th>Action</th>
             </tr>
@@ -51,9 +52,10 @@ const MyApplications = () => {
                   </div>
                 </td>
                 <td>{job.title}</td>
-                <td>Purple</td>
+                <td>{job.applicationDeadline}</td>
+                <td>status</td>
                 <th>
-                  <button className="btn btn-ghost btn-xs">details</button>
+                  <button className="btn btn-ghost btn-lg">X</button>
                 </th>
               </tr>
             ))}

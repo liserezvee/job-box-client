@@ -25,6 +25,9 @@ const Navbar = () => {
         <Link to="/addjob">Add a Job</Link>
       </li>
       <li>
+        <Link to="/myPostedJobs">My Posted Job</Link>
+      </li>
+      <li>
         <Link to="/login">Login</Link>
       </li>
       <li>
@@ -63,10 +66,10 @@ const Navbar = () => {
         <a className="btn btn-ghost text-xl">Job-Box</a>
       </div>
       <div className="navbar-center hidden lg:flex">
-        <ul className="menu menu-horizontal px-1 font-bold">{navLinks}</ul>
+        <ul className="menu menu-horizontal px-1 font-bold btn">{navLinks}</ul>
       </div>
       <div className="navbar-end">
-        <button onClick={handleLogOut} className="btn btn-primary">
+        <button onClick={handleLogOut} className="btn ">
           {user ? "Logout" : <Link to="/login">Login</Link>}
         </button>
       </div>

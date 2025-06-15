@@ -12,7 +12,7 @@ const JobDetails = () => {
     applicationDeadline, } = useLoaderData();
   console.log("title", title);
   return (
-    <div className="card bg-white text-black w-full shadow-sm h-screen">
+    <div className="card bg-white border-2 m-5 mx-auto items-center text-black w-2xl shadow-sm">
     <div className="flex gap-2 p-2 m-2">
       <figure>
         <img className="w-16" src={company_logo} alt="Shoes" />

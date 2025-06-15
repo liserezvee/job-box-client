@@ -1,8 +1,10 @@
 import React from "react";
 import useAuth from "../../hooks/useAuth";
+import { useNavigate } from "react-router-dom";
 
 const AddJob = () => {
   const { user } = useAuth();
+  const navigate = useNavigate();
   const handleAddJob = (e) => {
     e.preventDefault();
     const fromData = new FormData(e.target);
@@ -27,6 +29,7 @@ const AddJob = () => {
         if (data.acknowledged) {
           alert("Job Posted Successfully");
           e.target.reset();
+          navigate("/myPostedJobs");
         }
       });
   };

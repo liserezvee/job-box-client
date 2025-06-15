@@ -37,24 +37,24 @@ const JobApply = () => {
         });
   };
   return (
-    <div className="hero bg-white text-black flex flex-col">
+    <div className="hero bg-white text-black flex flex-col card border-2 m-5 mx-auto items-center  w-2xl shadow-sm">
       <div className="mt-5 text-2xl font-bold">
         <h1>Apply Job and Good Luck!</h1>
       </div>
       <form onSubmit={submitJobApplication} className="card-body w-full">
         <div className="fieldset  text-white font-bold">
           <div className="">
-            <label className="fieldset-label">LinkedIn URL</label>
+            <label className="fieldset-label text-black">LinkedIn URL</label>
             <input
               type="url"
               name="linkedIn"
-              className="input w-full "
+              className="input w-full"
               placeholder="LinkedIn URL"
               required
             />
           </div>
           <div>
-            <label className="fieldset-label">GitHub</label>
+            <label className="fieldset-label text-black">GitHub</label>
             <input
               type="url"
               name="github"
@@ -64,7 +64,7 @@ const JobApply = () => {
             />
           </div>
           <div>
-            <label className="fieldset-label">Resume</label>
+            <label className="fieldset-label text-black">Resume</label>
             <input
               type="url"
               name="resume"
