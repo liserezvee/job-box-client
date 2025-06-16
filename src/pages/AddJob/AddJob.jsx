@@ -1,10 +1,12 @@
 import React from "react";
 import useAuth from "../../hooks/useAuth";
 import { useNavigate } from "react-router-dom";
+import useAxiosSecure from "../../hooks/useAxiosSecure";
 
 const AddJob = () => {
   const { user } = useAuth();
   const navigate = useNavigate();
+  const axiosSecure = useAxiosSecure();
   const handleAddJob = (e) => {
     e.preventDefault();
     const fromData = new FormData(e.target);
@@ -16,22 +18,14 @@ const AddJob = () => {
     newJob.responsibilities = newJob.responsibilities.split("\n");
     console.log(newJob);
 
-    fetch("http://localhost:3000/jobs", {
-      method: "POST",
-      headers: {
-        "content-type": "application/json",
-      },
-      body: JSON.stringify(newJob),
-    })
-      .then((res) => res.json())
-      .then((data) => {
-        console.log(data);
-        if (data.acknowledged) {
-          alert("Job Posted Successfully");
-          e.target.reset();
-          navigate("/myPostedJobs");
-        }
-      });
+    axiosSecure.post("/jobs", newJob).then((res) => {
+      console.log(res.data);
+      if (res.data.acknowledged) {
+        alert("Job Posted Successfully");
+        e.target.reset();
+        navigate("/myPostedJobs");
+      }
+    });
   };
   return (
     <div className="text-gray-800 max-w-4xl mx-auto p-6 bg-white rounded-2xl shadow-lg mb-2 mt-2">

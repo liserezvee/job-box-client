@@ -1,15 +1,14 @@
 import React, { useContext } from "react";
 import img1 from "../../assets/Animation Login.json";
 import Lottie from "lottie-react";
-import { FcGoogle } from "react-icons/fc";
 import AuthContext from "../../context/AuthContext/AuthContext";
 import SocialLogin from "../Shared/SocialLogin/SocialLogin";
 import { useLocation, useNavigate } from "react-router-dom";
-
+import axios from "axios";
 const Login = () => {
   const { signInUser } = useContext(AuthContext);
-  const navigate = useNavigate()
-  const location = useLocation()
+  const navigate = useNavigate();
+  const location = useLocation();
   const from = location.state || "/";
   const handleLogin = (e) => {
     e.preventDefault();
@@ -20,8 +19,14 @@ const Login = () => {
     // Sign in with email and password
     signInUser(email, password)
       .then((result) => {
-        console.log("User signed in:", result.user);
-        navigate(from, { replace: true }); // Redirect to the previous page or home
+        console.log("User signed in:", result.user.email);
+        const user = { email: result.user.email };
+        axios
+          .post("http://localhost:3000/jwt", user, { withCredentials: true })
+          .then((res) => {
+            console.log(res.data);
+          });
+        // navigate(from, { replace: true }); // Redirect to the previous page or home
       })
       .catch((error) => {
         console.log("Error signing in:", error);
@@ -64,7 +69,9 @@ const Login = () => {
               >
                 Login
               </button>
-              <div className=" text-center">Or <br /> Log in with </div>
+              <div className=" text-center">
+                Or <br /> Log in with{" "}
+              </div>
               <SocialLogin />
             </div>
           </form>
