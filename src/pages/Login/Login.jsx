@@ -22,7 +22,7 @@ const Login = () => {
         console.log("User signed in:", result.user.email);
         const user = { email: result.user.email };
         axios
-          .post("http://localhost:3000/jwt", user, { withCredentials: true })
+          .post("https://job-box-server-ahhg.onrender.com/jwt", user, { withCredentials: true })
           .then((res) => {
             console.log(res.data);
           });

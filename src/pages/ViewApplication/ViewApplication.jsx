@@ -10,7 +10,7 @@ const ViewApplication = () => {
     const data = {
       status: e.target.value,
     };
-    fetch(`http://localhost:3000/job-applications/${id}`, {
+    fetch(`https://job-box-server-ahhg.onrender.com/job-applications/${id}`, {
       method: "PATCH",
       headers: {
         "Content-Type": "application/json",

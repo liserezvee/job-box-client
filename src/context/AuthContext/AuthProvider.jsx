@@ -41,14 +41,14 @@ const AuthProvider = ({ children }) => {
       if (currentUser?.email) {
         const user = { email: currentUser.email };
         axios
-          .post("http://localhost:3000/jwt", user, { withCredentials: true })
+          .post("https://job-box-server-ahhg.onrender.com/jwt", user, { withCredentials: true })
           .then((res) => {
             console.log("JWT response:", res.data);
             setLoading(false);
           });
       } else {
         axios
-          .post("http://localhost:3000/logout", {}, { withCredentials: true })
+          .post("https://job-box-server-ahhg.onrender.com/logout", {}, { withCredentials: true })
           .then((res) => {
             console.log("Logout response:", res.data);
             setLoading(false);

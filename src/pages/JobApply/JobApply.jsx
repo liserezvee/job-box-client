@@ -21,7 +21,7 @@ const JobApply = () => {
       github,
       resume,
     };
-    fetch("http://localhost:3000/job-applications", {
+    fetch("https://job-box-server-ahhg.onrender.com/job-applications", {
         method: "POST",
         headers: {
           "content-type": "application/json",

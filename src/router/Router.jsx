@@ -28,7 +28,7 @@ const router = createBrowserRouter([
           </PrivateRoute>
         ),
         loader: ({ params }) =>
-          fetch(`http://localhost:3000/jobs/${params.id}`),
+          fetch(`https://job-box-server-ahhg.onrender.com/jobs/${params.id}`),
       },
       {
         path: "/jobApply/:id",
@@ -70,7 +70,7 @@ const router = createBrowserRouter([
           </PrivateRoute>
         ),
         loader: ({ params }) => {
-          return fetch(`http://localhost:3000/job-application/jobs/${params.job_id}`);
+          return fetch(`https://job-box-server-ahhg.onrender.com/job-application/jobs/${params.job_id}`);
         },
       },
       {
