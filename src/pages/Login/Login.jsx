@@ -26,7 +26,7 @@ const Login = () => {
           .then((res) => {
             console.log(res.data);
           });
-        // navigate(from, { replace: true }); // Redirect to the previous page or home
+        navigate(from, { replace: true }); // Redirect to the previous page or home
       })
       .catch((error) => {
         console.log("Error signing in:", error);

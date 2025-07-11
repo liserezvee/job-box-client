@@ -202,7 +202,7 @@ const AddJob = () => {
         <div className="pt-4 text-center">
           <button
             type="submit"
-            className="bg-blue-600 text-white w-3xl px-6 py-3 rounded-lg hover:bg-blue-700 transition duration-200 cursor-pointer"
+            className="bg-black text-white w-3xl px-6 py-3 rounded-lg  cursor-pointer"
           >
             Submit Job
           </button>
